@@ -48,10 +48,16 @@ class Main {
 
 	public static void main(String[] args) throws MalformedURLException, IOException, InterruptedException {
         Scanner in = new Scanner(System.in);
-        String query = in.nextLine();
+        
+        String query = "query";
+        while(!query.isEmpty()){
+        System.out.print("Term to be crawled : ");
+        query = in.nextLine();
         query = query.trim();
+        if(query.isEmpty()) break;
         query = query.replaceAll(" ", "%20");
 
+        System.out.println("/nAPI Response : ");
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://newscatcher.p.rapidapi.com/v1/latest_headlines?topic=tech&lang=en&media=True"))
                 .header("x-rapidapi-key", "{}") //Add token
@@ -59,7 +65,7 @@ class Main {
                 .method("GET", HttpRequest.BodyPublishers.noBody()).build();
         HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         System.out.println(response.body());
-
+        }
 	}
 
 }
