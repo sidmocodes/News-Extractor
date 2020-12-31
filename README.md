@@ -1,2 +1,2 @@
 # News-Extractor
-It uses Newscatcher API
+Extract news about whatever from wherever, whenever you want
